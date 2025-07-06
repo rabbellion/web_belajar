@@ -88,20 +88,42 @@ const ctx = canvas.getContext ? canvas.getContext('2d') : null;
 let menggambar = false;
 
 if (ctx && canvas) {
+  // Mouse Events
   canvas.addEventListener('mousedown', () => menggambar = true);
   canvas.addEventListener('mouseup', () => menggambar = false);
   canvas.addEventListener('mouseleave', () => menggambar = false);
   canvas.addEventListener('mousemove', (e) => {
     if (!menggambar) return;
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    ctx.fillStyle = "#000";
-    ctx.beginPath();
-    ctx.arc(x, y, 3, 0, Math.PI * 2);
-    ctx.fill();
+    gambarTitik(e.clientX, e.clientY);
   });
+
+  // Touch Events
+  canvas.addEventListener('touchstart', (e) => {
+    menggambar = true;
+    const touch = e.touches[0];
+    gambarTitik(touch.clientX, touch.clientY);
+  });
+
+  canvas.addEventListener('touchmove', (e) => {
+    if (!menggambar) return;
+    const touch = e.touches[0];
+    gambarTitik(touch.clientX, touch.clientY);
+    e.preventDefault(); // agar layar tidak geser
+  });
+
+  canvas.addEventListener('touchend', () => menggambar = false);
 }
+
+function gambarTitik(clientX, clientY) {
+  const rect = canvas.getBoundingClientRect();
+  const x = clientX - rect.left;
+  const y = clientY - rect.top;
+  ctx.fillStyle = "#000";
+  ctx.beginPath();
+  ctx.arc(x, y, 3, 0, Math.PI * 2);
+  ctx.fill();
+}
+
 
 function hapusKanvas() {
   if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
