@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Belajar Anak</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Belajar Anak</h1>
+  <div class="card-container">
+    <div class="card" onclick="openModule('alfabet')">Menghapal Alfabet</div>
+    <div class="card" onclick="openModule('matematika')">Matematika</div>
+    <div class="card" onclick="openModule('mengetik')">Belajar Mengetik</div>
+    <div class="card" onclick="openModule('menulis')">Belajar Menulis</div>
+  </div>
+
+  <!-- Modul Alfabet -->
+  <div id="alfabet-module" class="module hidden">
+    <h2>Menghapal Alfabet</h2>
+    <div class="letters">
+      <script>
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+        document.write(letters.map(l => `<button onclick="playSound('${l}')">${l}</button>`).join(''));
+      </script>
+    </div>
+    <button onclick="closeModule()">Kembali</button>
+  </div>
+
+  <!-- Modul Matematika -->
+  <div id="matematika-module" class="module hidden">
+    <h2>Latihan Matematika</h2>
+    <div id="soal"></div>
+    <input type="number" id="jawaban" placeholder="Jawaban kamu">
+    <button onclick="cekJawaban()">Cek Jawaban</button>
+    <div id="feedback"></div>
+    <button onclick="soalBaru()">Soal Baru</button>
+    <button onclick="closeModule()">Kembali</button>
+  </div>
+
+  <!-- Modul Menulis -->
+  <div id="menulis-module" class="module hidden">
+    <h2>Latihan Menulis</h2>
+    <p>Tulis huruf atau angka berikut:</p>
+    <h1 id="target-menulis" style="font-size: 48px; color: #6a1b9a;">A</h1>
+
+    <canvas id="kanvas" width="300" height="300"></canvas>
+    <br>
+    <button onclick="cekTulisan()">Cek Jawaban</button>
+    <button onclick="soalTulisanBaru()">Soal Baru</button>
+    <button onclick="hapusKanvas()">Bersihkan</button>
+    <button onclick="closeModule()">Kembali</button>
+    <p id="feedback-tulisan"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #fce4ec;
+  color: #333;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.card {
+  background-color: #f8bbd0;
+  padding: 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 180px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.module {
+  margin-top: 30px;
+}
+
+.hidden {
+  display: none;
+}
+
+.letters button {
+  font-size: 24px;
+  margin: 5px;
+  padding: 10px 15px;
+  background-color: #ce93d8;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#kanvas {
+  border: 2px solid #888;
+  background-color: white;
+  cursor: crosshair;
+}
