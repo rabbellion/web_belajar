@@ -49,4 +49,5 @@ body {
   border: 2px solid #888;
   background-color: white;
   cursor: crosshair;
+  touch-action: none;
 }

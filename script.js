@@ -1,4 +1,4 @@
-// Modul Switching
+// === Modul Switching ===
 function openModule(name) {
   closeAllModules();
   const moduleId = `${name}-module`;
@@ -19,15 +19,15 @@ function closeAllModules() {
   document.querySelectorAll('.module').forEach(m => m.classList.add('hidden'));
 }
 
-// ALFABET
+// === Modul Alfabet ===
 function playSound(letter) {
   const msg = new SpeechSynthesisUtterance(letter);
-  msg.lang = 'id-ID';
+  msg.lang = 'en-US';
   msg.rate = 0.8;
   window.speechSynthesis.speak(msg);
 }
 
-// MATEMATIKA
+// === Modul Matematika ===
 let angka1, angka2, jawabanBenar;
 
 function soalBaru() {
@@ -52,7 +52,7 @@ function cekJawaban() {
   }
 }
 
-// MENULIS
+// === Modul Menulis ===
 let hurufAngkaTarget = '';
 
 function soalTulisanBaru() {
@@ -62,13 +62,12 @@ function soalTulisanBaru() {
   document.getElementById('feedback-tulisan').innerText = '';
   hapusKanvas();
 
-  // 🔊 Tambahan: ucapkan huruf/angka
+  // 🔊 Ucapkan huruf/angka
   const msg = new SpeechSynthesisUtterance(hurufAngkaTarget);
-  msg.lang = 'id-ID';
-  msg.rate = 0.8; // Lebih pelan untuk anak-anak
+  msg.lang = 'en-US';
+  msg.rate = 0.8;
   window.speechSynthesis.speak(msg);
 }
-
 
 function cekTulisan() {
   const pesan = [
@@ -81,14 +80,13 @@ function cekTulisan() {
   document.getElementById('feedback-tulisan').innerText = pesan[acak];
 }
 
-// Menulis di Kanvas
+// === Gambar di Kanvas (Mouse & Touch) ===
 const canvas = document.getElementById('kanvas');
-const ctx = canvas.getContext ? canvas.getContext('2d') : null;
-
+const ctx = canvas?.getContext('2d');
 let menggambar = false;
 
 if (ctx && canvas) {
-  // Mouse Events
+  // Mouse
   canvas.addEventListener('mousedown', () => menggambar = true);
   canvas.addEventListener('mouseup', () => menggambar = false);
   canvas.addEventListener('mouseleave', () => menggambar = false);
@@ -97,19 +95,19 @@ if (ctx && canvas) {
     gambarTitik(e.clientX, e.clientY);
   });
 
-  // Touch Events
+  // Touch
   canvas.addEventListener('touchstart', (e) => {
     menggambar = true;
     const touch = e.touches[0];
     gambarTitik(touch.clientX, touch.clientY);
-  });
+  }, { passive: false });
 
   canvas.addEventListener('touchmove', (e) => {
     if (!menggambar) return;
     const touch = e.touches[0];
     gambarTitik(touch.clientX, touch.clientY);
-    e.preventDefault(); // agar layar tidak geser
-  });
+    e.preventDefault(); // Cegah layar geser
+  }, { passive: false });
 
   canvas.addEventListener('touchend', () => menggambar = false);
 }
@@ -123,7 +121,6 @@ function gambarTitik(clientX, clientY) {
   ctx.arc(x, y, 3, 0, Math.PI * 2);
   ctx.fill();
 }
-
 
 function hapusKanvas() {
   if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
