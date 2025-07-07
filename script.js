@@ -22,7 +22,7 @@ function closeAllModules() {
 // === Modul Alfabet ===
 function playSound(letter) {
   const msg = new SpeechSynthesisUtterance(letter);
-  msg.lang = 'en-US';
+  msg.lang = 'id-ID';
   msg.rate = 0.8;
   window.speechSynthesis.speak(msg);
 }
@@ -64,7 +64,7 @@ function soalTulisanBaru() {
 
   // 🔊 Ucapkan huruf/angka
   const msg = new SpeechSynthesisUtterance(hurufAngkaTarget);
-  msg.lang = 'en-US';
+  msg.lang = 'id-ID';
   msg.rate = 0.8;
   window.speechSynthesis.speak(msg);
 }
